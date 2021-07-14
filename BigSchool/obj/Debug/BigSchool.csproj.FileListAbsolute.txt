@@ -106,3 +106,9 @@ D:\VS 2019\BigSchool\BigSchool\obj\Debug\BigSchool.csproj.CoreCompileInputs.cach
 D:\VS 2019\BigSchool\BigSchool\obj\Debug\BigSchool.csproj.CopyComplete
 D:\VS 2019\BigSchool\BigSchool\obj\Debug\BigSchool.dll
 D:\VS 2019\BigSchool\BigSchool\obj\Debug\BigSchool.pdb
+D:\VS 2019\BigSchool\BigSchool\bin\System.Net.Http.Formatting.dll
+D:\VS 2019\BigSchool\BigSchool\bin\System.Web.Http.dll
+D:\VS 2019\BigSchool\BigSchool\bin\System.Web.Http.WebHost.dll
+D:\VS 2019\BigSchool\BigSchool\bin\System.Net.Http.Formatting.xml
+D:\VS 2019\BigSchool\BigSchool\bin\System.Web.Http.xml
+D:\VS 2019\BigSchool\BigSchool\bin\System.Web.Http.WebHost.xml
