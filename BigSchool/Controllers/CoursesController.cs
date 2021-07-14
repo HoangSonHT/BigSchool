@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -76,34 +77,40 @@ namespace BigSchool.Controllers
             return View(courses);
         }
 
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
+
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = context.Courses.Find(id);
-            if (course == null)
+            Course x = context.Courses.FirstOrDefault(m => m.Id == id);
+            x.ListCategory = context.Categories.ToList();
+            if (x == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoryId = new SelectList(context.Categories, "Id", "Name", course.CategoryId);
-            return View(course);
+            return View(x);
+        }
+        [Authorize]
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Course course)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                course.ListCategory = context.Categories.ToList();
+                return View("Edit", course);
+
+            }
+
+            context.Courses.AddOrUpdate(course);
+            context.SaveChanges();
+            return RedirectToAction("Mine");
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Place,DateTime,CategoryId")] Course course)
-        {
-            if (ModelState.IsValid)
-            {
-                context.Entry(course).State = EntityState.Modified;
-                context.SaveChanges();
-                return RedirectToAction("Mine");
-            }
-            ViewBag.CategoryId = new SelectList(context.Categories, "Id", "Name", course.CategoryId);
-            return View(course);
-        }
 
         public ActionResult Delete(int? id)
         {
@@ -126,7 +133,7 @@ namespace BigSchool.Controllers
             Course course = context.Courses.Find(id);
             context.Courses.Remove(course);
             context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Mine");
         }
     }
 
