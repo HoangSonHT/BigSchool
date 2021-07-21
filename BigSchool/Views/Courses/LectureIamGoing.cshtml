@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<BigSchool.Models.Course>
 
 @{
-    ViewBag.Title = "Mine";
+    ViewBag.Title = "LectureIamGoing";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Mine</h2>
+<h2>LectureIamGoing</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -25,17 +25,9 @@
                     </div>
                 </div>
                 <div class="details">
-                    <span class="lecture">
-                        @course.LecturerName
-                    </span>
+                    <span class="lecture">@course.LecturerName</span>
                     <br />
-                    <span class="category">
-                        @course.Category.Name
-                    </span>
-                </div>
-                <div class="action">
-                    <a href="@Url.Action("Edit","Courses", new { id = course.Id })">Edit</a>
-                    <a href="@Url.Action("Delete","Courses", new { id = course.Id })">Delete</a>
+                    <span class="category">@course.Category.Name</span>
                 </div>
             </li>
         }
